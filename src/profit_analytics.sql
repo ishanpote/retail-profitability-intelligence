@@ -26,3 +26,17 @@ SELECT
 FROM orders_fact
 GROUP BY region
 ORDER BY regional_profit_ratio ASC;
+
+
+-- Query 3: Chronic Profit Drainers
+-- Objective: Isolate sub-categories where total net profit is negative
+SELECT 
+    category,
+    sub_category,
+    ROUND(SUM(sales), 2) AS gross_revenue,
+    ROUND(SUM(profit), 2) AS net_losses,
+    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS negative_profit_ratio
+FROM orders_fact
+GROUP BY category, sub_category
+HAVING SUM(profit) < 0
+ORDER BY net_losses ASC;
