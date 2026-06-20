@@ -24,7 +24,7 @@ def run_etl_pipeline():
     df.columns = df.columns.str.strip().str.replace(' ', '_').str.replace('-', '_').str.lower()
     
     print("Core Cleaning: Addressing data integrity gaps...")
-    # Resolve empty postal code blocks with zero default values
+    
     if 'postal_code' in df.columns:
         df['postal_code'] = df['postal_code'].fillna(0).astype(str)
         
