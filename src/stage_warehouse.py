@@ -20,7 +20,7 @@ def run_etl_pipeline():
     
     # 2. Transformation Phase
     print("Core Cleaning: Standardizing database schema headers...")
-    # Convert column spaces and hyphens into standard SQL snake_case fields
+    
     df.columns = df.columns.str.strip().str.replace(' ', '_').str.replace('-', '_').str.lower()
     
     print("Core Cleaning: Addressing data integrity gaps...")
